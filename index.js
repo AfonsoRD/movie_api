@@ -1,12 +1,15 @@
 const express = require('express'),
-  morgan = require('morgan');
+  morgan = require('morgan'),
+  bodyParser = require('body-parser'),
+  uuid = require('uuid');
 
 const app = express();
 
 app.use(morgan('common'));
 app.use(express.static('public'));
+app.use(bodyParser.json());
 
-let topTenMovies = [
+let movies = [
   {
     Title: 'Donnie Darko',
     Description:
@@ -17,8 +20,7 @@ let topTenMovies = [
         'A mystery film is a genre of film that revolves around the solution of a problem or a crime.'
     },
     Director: 'Richard Kelly',
-    Year: '2001',
-    Image: '#'
+    Year: '2001'
   },
   {
     Title: 'Coherence',
@@ -30,8 +32,7 @@ let topTenMovies = [
         'A mystery film is a genre of film that revolves around the solution of a problem or a crime.'
     },
     Director: 'James Ward Byrkit',
-    Year: '2013',
-    Image: '#'
+    Year: '2013'
   },
   {
     Title: 'Shutter Island',
@@ -43,8 +44,7 @@ let topTenMovies = [
         'A mystery film is a genre of film that revolves around the solution of a problem or a crime.'
     },
     Director: 'Martin Scorsese',
-    Year: '2010',
-    Image: '#'
+    Year: '2010'
   },
   {
     Title: 'The Lord of the Rings: The Fellowship of the Ring',
@@ -56,8 +56,7 @@ let topTenMovies = [
         'Action films are built around a core set of characteristics: spectacular physical action; a narrative emphasis on fights, chases, and explosions; and a combination of state-of-the-art special effects and stunt-work.'
     },
     Director: 'Peter Jackson',
-    Year: '2001',
-    Image: '#'
+    Year: '2001'
   },
   {
     Title: 'The Lord of the Rings: The Two Towers',
@@ -69,8 +68,7 @@ let topTenMovies = [
         'Action films are built around a core set of characteristics: spectacular physical action; a narrative emphasis on fights, chases, and explosions; and a combination of state-of-the-art special effects and stunt-work.'
     },
     Director: 'Peter Jackson',
-    Year: '2002',
-    Image: '#'
+    Year: '2002'
   },
   {
     Title: 'The Lord of the Rings: The Return of the King',
@@ -82,8 +80,7 @@ let topTenMovies = [
         'Action films are built around a core set of characteristics: spectacular physical action; a narrative emphasis on fights, chases, and explosions; and a combination of state-of-the-art special effects and stunt-work.'
     },
     Director: 'Peter Jackson',
-    Year: '2003',
-    Image: '#'
+    Year: '2003'
   },
   {
     Title: 'Parasite',
@@ -95,8 +92,7 @@ let topTenMovies = [
         "The drama genre features stories with high stakes and many conflicts. They're plot-driven and demand that every character and scene move the story forward. Dramas follow a clearly defined narrative plot structure, portraying real-life scenarios or extreme situations with emotionally-driven characters."
     },
     Director: 'Bong Joon Ho',
-    Year: '2019',
-    Image: '#'
+    Year: '2019'
   },
   {
     Title: "Harry Potter and the Philosopher's Stone",
@@ -108,8 +104,7 @@ let topTenMovies = [
         'Adventure film is a genre that revolves around the conquests and explorations of a protagonist. The purpose of the conquest can be to retrieve a person or treasure, but often the main focus is simply the pursuit of the unknown. These films generally take place in exotic locations and play on historical myths.'
     },
     Director: 'Chris Columbus',
-    Year: '2001',
-    Image: '#'
+    Year: '2001'
   },
   {
     Title: 'Fight Club',
@@ -121,8 +116,7 @@ let topTenMovies = [
         "The drama genre features stories with high stakes and many conflicts. They're plot-driven and demand that every character and scene move the story forward. Dramas follow a clearly defined narrative plot structure, portraying real-life scenarios or extreme situations with emotionally-driven characters."
     },
     Director: 'David Fincher',
-    Year: '1999',
-    Image: '#'
+    Year: '1999'
   },
   {
     Title: 'Interstellar',
@@ -134,30 +128,30 @@ let topTenMovies = [
         "The drama genre features stories with high stakes and many conflicts. They're plot-driven and demand that every character and scene move the story forward. Dramas follow a clearly defined narrative plot structure, portraying real-life scenarios or extreme situations with emotionally-driven characters."
     },
     Director: 'Christopher Nolan',
-    Year: '2014',
-    Image: '#'
+    Year: '2014'
   }
 ];
+
+//READ
 
 app.get('/', (req, res) => {
   res.send('Welcome to myFlix APP!');
 });
 
 app.get('/movies', (req, res) => {
-  res.json(topTenMovies);
+  res.status(200).json(movies);
 });
 
-app.get('/documentation', (req, res) => {
-  res.sendFile('public/documentation.html', { root: __dirname });
-});
+app.get('/movies/:title', (req, res) => {
+  const { title } = req.params;
+  const movie = movies.find((movie) => movie.Title === title);
 
-// ERROR Handling
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).send('Something broke!');
+  if (movie) {
+    res.status(200).json(movie);
+  } else {
+    res.status(400).send('movie not found');
+  }
 });
 
 //Listen for requests
-app.listen(8080, () => {
-  console.log('Your app is listening on port 8080');
-});
+app.listen(8080, () => console.log('Your app is listening on port 8080'));
