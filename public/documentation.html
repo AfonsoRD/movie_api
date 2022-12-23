@@ -9,10 +9,132 @@
 </head>
 
 <body>
-    <h1>My Flix App</h1>
+    <header>
+        <h1>Movie API Documentation</h1>
+    </header>
+    <div>
+        <h1>My Flix App</h1>
 
-    <p>This page will interact with the database to show some movies on my REST api
-    </p>
+        <p>This page will interact with the database to show some movies on my REST api</p>
+        <br>
+        <h2>Features</h2>
+        <ul>
+            <li>Return a list of ALL movies to the user</li>
+            <li>Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie
+                by
+                title to the user</li>
+            <li>Return data about a genre (description) by name/title</li>
+            <li>Return data about a director (bio, birth year, death year) by name</li>
+            <li>Allow new users to register</li>
+            <li>Allow users to update their user info</li>
+            <li>AAllow users to add a movie to their list of favorites (showing only a text that a movie has been added)
+            </li>
+            <li>Allow users to remove a movie from their list of favorites (showing only a text that a movie has been
+                removed)</li>
+            <li>Allow existing users to deregister (showing only a text that a user email has been removed)</li>
+        </ul>
+    </div>
+
+    <h2>API Endpoints</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Buisness Logic</th>
+                <th>URL</th>
+                <th>HTTP Method</th>
+                <th>Query Parameters</th>
+                <th>Request data format</th>
+                <th>Response data format</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>Get all movies</td>
+                <td>/movies</td>
+                <td>GET</td>
+                <td>-</td>
+                <td>-</td>
+                <td>A JSON object holding data about all the movies</td>
+            </tr>
+
+            <tr>
+                <td>Get a single movie by title</td>
+                <td>/movies/:title</td>
+                <td>GET</td>
+                <td>:title</td>
+                <td>-</td>
+                <td>A JSON object holding data about a single movie</td>
+            </tr>
+
+            <tr>
+                <td>Get by Genre's Name</td>
+                <td>/movies/genre/:genreName</td>
+                <td>GET</td>
+                <td>:genreName</td>
+                <td>-</td>
+                <td>A JSON object holding data about the genre of a movie</td>
+            </tr>
+
+            <tr>
+                <td>Get by Director's Name</td>
+                <td>/movies/directors/:directorName</td>
+                <td>GET</td>
+                <td>:directorName</td>
+                <td>-</td>
+                <td>A JSON object holding data about the data of a director</td>
+            </tr>
+
+            <tr>
+                <td>Allow users to Register</td>
+                <td>/users</td>
+                <td>POST</td>
+                <td>-</td>
+                <td>A JSON object holding data about new user. Structure: { "name" : "user",
+                    "favorite movie" : [] } </td>
+                <td>A JSON object holding data about the user that was added. Structure { "name" : "user",
+                    "favorite movie" : [] } and ID auto generated included </td>
+            </tr>
+
+            <tr>
+                <td>Allow users to update info</td>
+                <td>/users/:id</td>
+                <td>PUT</td>
+                <td>:id</td>
+                <td>-</td>
+                <td>A JSON object holding data about the updated information</td>
+            </tr>
+
+
+            <tr>
+                <td>Add a movie to favorite list</td>
+                <td>/users/:id/:movieTitle</td>
+                <td>POST</td>
+                <td>:movieTitle</td>
+                <td>-</td>
+                <td>A text message indicating whether the Movie was added</td>
+            </tr>
+
+            <tr>
+                <td>Delete movie from favorite list</td>
+                <td>/users/:id/:movieTitle</td>
+                <td>DELETE</td>
+                <td>:movieTitle</td>
+                <td>-</td>
+                <td>A text message indicating whether the Movie was removed</td>
+            </tr>
+
+            <tr>
+                <td>Allow existing users to deregister</td>
+                <td>/users/:id</td>
+                <td>DELETE</td>
+                <td>:movieTitle</td>
+                <td>-</td>
+                <td>A text message indicating whether the User has deregistered</td>
+            </tr>
+        </tbody>
+    </table>
 
 </body>
 
