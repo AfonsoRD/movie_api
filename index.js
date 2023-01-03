@@ -34,9 +34,11 @@ let movies = [
     Director: {
       Name: 'Richard Kelly',
       Bio: 'James Richard Kelly is an American filmmaker and screenwriter, who initially gained recognition for writing and directing the cult classic Donnie Darko in 2001.',
-      Year: '1975'
+      birthYear: '1975-03-28',
+      deathYear: '-'
     },
-    Year: '2001'
+    movieYear: '2001',
+    ImageURL: '#'
   },
   {
     Title: 'Coherence',
@@ -50,9 +52,11 @@ let movies = [
     Director: {
       Name: 'James Ward Byrkit',
       Bio: 'James Ward Byrkit is an American film director, writer, and actor. He is best known for directing the science fiction thriller Coherence and co-writing the script for Rango, one of his many collaborations with Gore Verbinski. For Rango, Byrkit starred as several characters, most notably Waffles, a horned lizard.',
-      Year: '1985'
+      birthYear: '1985',
+      deathYear: '-'
     },
-    Year: '2013'
+    movieYear: '2013',
+    ImageURL: '#'
   },
   {
     Title: 'Shutter Island',
@@ -66,9 +70,11 @@ let movies = [
     Director: {
       Name: 'Martin Scorsese',
       Bio: 'Martin Charles Scorsese is an American film director, producer, screenwriter and actor. Scorsese emerged as one of the major figures of the New Hollywood era.',
-      Year: '1942'
+      birthYear: '1942',
+      deathYear: '-'
     },
-    Year: '2010'
+    movieYear: '2010',
+    ImageURL: '#'
   },
   {
     Title: 'The Lord of the Rings: The Fellowship of the Ring',
@@ -82,9 +88,11 @@ let movies = [
     Director: {
       Name: 'Peter Jackson',
       Bio: 'Sir Peter Robert Jackson ONZ KNZM is a New Zealand film director, screenwriter and producer. He is best known as the director, writer and producer of the Lord of the Rings trilogy and the Hobbit trilogy, both of which are adapted from the novels of the same name by J. R. R. Tolkien.',
-      Year: '1961'
+      birthYear: '1961',
+      deathYear: '-'
     },
-    Year: '2001'
+    movieYear: '2001',
+    ImageURL: '#'
   },
   {
     Title: 'The Lord of the Rings: The Two Towers',
@@ -98,9 +106,11 @@ let movies = [
     Director: {
       Name: 'Peter Jackson',
       Bio: 'Sir Peter Robert Jackson ONZ KNZM is a New Zealand film director, screenwriter and producer. He is best known as the director, writer and producer of the Lord of the Rings trilogy and the Hobbit trilogy, both of which are adapted from the novels of the same name by J. R. R. Tolkien.',
-      Year: '1961'
+      birthYear: '1961',
+      deathYear: '-'
     },
-    Year: '2002'
+    movieYear: '2002',
+    ImageURL: '#'
   },
   {
     Title: 'The Lord of the Rings: The Return of the King',
@@ -114,9 +124,11 @@ let movies = [
     Director: {
       Name: 'Peter Jackson',
       Bio: 'Sir Peter Robert Jackson ONZ KNZM is a New Zealand film director, screenwriter and producer. He is best known as the director, writer and producer of the Lord of the Rings trilogy and the Hobbit trilogy, both of which are adapted from the novels of the same name by J. R. R. Tolkien.',
-      Year: '1961'
+      birthYear: '1961',
+      deathYear: '-'
     },
-    Year: '2003'
+    movieYear: '2003',
+    ImageURL: '#'
   },
   {
     Title: 'Parasite',
@@ -130,9 +142,11 @@ let movies = [
     Director: {
       Name: 'Bong Joon Ho',
       Bio: 'Bong Joon-ho is a South Korean film director, producer and screenwriter. The recipient of four Academy Awards, his filmography is characterised by emphasis on social themes, genre-mixing, black humor, and sudden tone shifts.',
-      Year: '1969'
+      birthYear: '1969',
+      deathYear: '-'
     },
-    Year: '2019'
+    movieYear: '2019',
+    ImageURL: '#'
   },
   {
     Title: "Harry Potter and the Philosopher's Stone",
@@ -146,9 +160,11 @@ let movies = [
     Director: {
       Name: 'Chris Columbus',
       Bio: 'Chris Joseph Columbus is an American filmmaker. Born in Spangler, Pennsylvania, Columbus studied film at Tisch School of the Arts where he developed an interest in filmmaking.',
-      Year: '1958'
+      birthYear: '1958',
+      deathYear: '-'
     },
-    Year: '2001'
+    movieYear: '2001',
+    ImageURL: '#'
   },
   {
     Title: 'Fight Club',
@@ -162,9 +178,11 @@ let movies = [
     Director: {
       Name: 'David Fincher',
       Bio: 'David Andrew Leo Fincher is an American film director. His films, mostly psychological thrillers and biographical dramas, have received 40 nominations at the Academy Awards, including three for him as Best Director. Fincher was the co-founder of Propaganda Films, a film and music video production company.',
-      Year: '1962'
+      birthYear: '1962',
+      deathYear: '-'
     },
-    Year: '1999'
+    movieYear: '1999',
+    ImageURL: '#'
   },
   {
     Title: 'Interstellar',
@@ -178,9 +196,11 @@ let movies = [
     Director: {
       Name: 'Christopher Nolan',
       Bio: 'Christopher Edward Nolan CBE is a British-American filmmaker. Known for his lucrative Hollywood blockbusters with complex storytelling, Nolan is considered a leading filmmaker of the 21st century. His films have grossed $4.9 billion worldwide.',
-      Year: '1970'
+      birthYear: '1970',
+      deathYear: '-'
     },
-    Year: '2014'
+    movieYear: '2014',
+    ImageURL: '#'
   }
 ];
 
