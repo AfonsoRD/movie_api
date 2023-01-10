@@ -51,7 +51,7 @@
 
         <tbody>
             <tr>
-                <td>Get all movies</td>
+                <td>Get all Movies</td>
                 <td>/movies</td>
                 <td>GET</td>
                 <td>-</td>
@@ -60,30 +60,39 @@
             </tr>
 
             <tr>
-                <td>Get a single movie by title</td>
-                <td>/movies/:title</td>
+                <td>Get a single Movie by title</td>
+                <td>/movies/:Title</td>
                 <td>GET</td>
-                <td>:title</td>
+                <td>:Title</td>
                 <td>-</td>
                 <td>A JSON object holding data about a single movie</td>
             </tr>
 
             <tr>
                 <td>Get by Genre's Name</td>
-                <td>/movies/genre/:genreName</td>
+                <td>/movies/genre/:Name</td>
                 <td>GET</td>
-                <td>:genreName</td>
+                <td>:Name</td>
                 <td>-</td>
                 <td>A JSON object holding data about the genre of a movie</td>
             </tr>
 
             <tr>
                 <td>Get by Director's Name</td>
-                <td>/movies/directors/:directorName</td>
+                <td>/movies/director/:Name</td>
                 <td>GET</td>
-                <td>:directorName</td>
+                <td>:Name</td>
                 <td>-</td>
                 <td>A JSON object holding data about the data of a director</td>
+            </tr>
+
+            <tr>
+                <td>Get all users</td>
+                <td>/users</td>
+                <td>GET</td>
+                <td>-</td>
+                <td>-</td>
+                <td>A JSON object holding data about all the users</td>
             </tr>
 
             <tr>
@@ -91,17 +100,21 @@
                 <td>/users</td>
                 <td>POST</td>
                 <td>-</td>
-                <td>A JSON object holding data about new user. Structure: { "name" : "user",
-                    "favorite movie" : [] } </td>
-                <td>A JSON object holding data about the user that was added. Structure { "name" : "user",
-                    "favorite movie" : [] } and ID auto generated included </td>
+                <td>A JSON object holding data about new user. Structure: { Username: { type: String, required: true },
+                    Password: { type: String, required: true },
+                    Email: { type: String, required: true },
+                    Birthday: Date,
+                    FavoriteMovies: [ ]} </td>
+                <td>A JSON object holding data about the user that was added. Structure like { "Username" : "TestUser",
+                    "Password": "123test", "Email": "test@exmpl.com",
+                    "Birthday": "2000-01-01", "FavoriteMovies": [] and ID auto generated included </td>
             </tr>
 
             <tr>
                 <td>Allow users to update info</td>
-                <td>/users/:id</td>
+                <td>/users/:Name</td>
                 <td>PUT</td>
-                <td>:id</td>
+                <td>:Name</td>
                 <td>-</td>
                 <td>A JSON object holding data about the updated information</td>
             </tr>
@@ -109,27 +122,27 @@
 
             <tr>
                 <td>Add a movie to favorite list</td>
-                <td>/users/:id/:movieTitle</td>
+                <td>/users/:Name/movies/:movieId</td>
                 <td>POST</td>
-                <td>:movieTitle</td>
+                <td>:movieId</td>
                 <td>-</td>
                 <td>A text message indicating whether the Movie was added</td>
             </tr>
 
             <tr>
                 <td>Delete movie from favorite list</td>
-                <td>/users/:id/:movieTitle</td>
+                <td>/users/:Name/movies/:movieId</td>
                 <td>DELETE</td>
-                <td>:movieTitle</td>
+                <td>:movieId</td>
                 <td>-</td>
                 <td>A text message indicating whether the Movie was removed</td>
             </tr>
 
             <tr>
                 <td>Allow existing users to deregister</td>
-                <td>/users/:id</td>
+                <td>/users/:Name</td>
                 <td>DELETE</td>
-                <td>:movieTitle</td>
+                <td>:Name</td>
                 <td>-</td>
                 <td>A text message indicating whether the User has deregistered</td>
             </tr>
