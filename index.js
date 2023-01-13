@@ -17,13 +17,18 @@ mongoose.connect('mongodb://localhost:27017/myFlix', {
 });
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); //bodyParser middle ware function
 
 //log request to server
 app.use(morgan('common'));
 
 app.use(express.static('public'));
 
-//import auth into index
+let auth = require('./auth')(app); // to import auth.js file... the (app) argument is to ensure Express is available in the auth.js file as well
+
+//import passport.js file
+const passport = require('passport');
+require('./passport');
 
 //default text response when at /
 
