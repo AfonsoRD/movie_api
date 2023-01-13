@@ -196,37 +196,41 @@ app.post('/users/:Username/movies/:MovieID', (req, res) => {
     { Username: req.params.Username },
     {
       $push: { FavoriteMovies: req.params.MovieID }
-    },
-    { new: true }, // This line makes sure that the updated document is returned
-    (err, updatedUser) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send('Error: ' + err);
-      } else {
-        res.json(updatedUser);
-      }
     }
-  );
+  )
+    .then(() =>
+      res.send(
+        req.params.MovieID + ' was added to ' + req.params.Username + ' list.'
+      )
+    )
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
 
 //DELETE
-// Delete a movie to a user's list of favorites
+//Delete a movie to a user's list of favorites
+
 app.delete('/users/:Username/movies/:MovieID', (req, res) => {
-  Users.findOneAndUpdate(
+  Users.findOneAndDelete(
     { Username: req.params.Username },
     {
       $pull: { FavoriteMovies: req.params.MovieID }
-    },
-    { new: true }, // This line makes sure that the updated document is returned
-    (err, updatedUser) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send('Error: ' + err);
-      } else {
-        res.json(updatedUser);
-      }
     }
-  );
+  )
+    .then(() =>
+      res.send(
+        req.params.MovieID +
+          ' was deleted from ' +
+          req.params.Username +
+          ' list.'
+      )
+    )
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
 
 //DELETE
