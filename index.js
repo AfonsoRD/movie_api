@@ -138,7 +138,9 @@ app.post('/users', (req, res) => {
           Birthday: req.body.Birthday
         })
           .then((user) => {
-            res.status(201).json(user);
+            res
+              .status(201)
+              .json({ Username: user.Username, Email: user.Email });
           })
           .catch((error) => {
             console.error(error);
