@@ -22,9 +22,9 @@ passport.use(
         }
 
         if (!user) {
-          console.log('incorrect username');
+          console.log('Username or Password not correct.');
           return callback(null, false, {
-            message: 'Incorrect username or password.'
+            message: 'Username or Password not correct.'
           });
         }
 
@@ -44,7 +44,7 @@ passport.use(
     (jwtPayload, callback) => {
       return Users.findById(jwtPayload._id)
         .then((user) => {
-          return callback(null, user);
+          return callback(null, user._id);
         })
         .catch((error) => {
           return callback(error);
