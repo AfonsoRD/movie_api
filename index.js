@@ -2,6 +2,7 @@ const express = require('express'),
   morgan = require('morgan'),
   bodyParser = require('body-parser'),
   uuid = require('uuid'),
+  cors = require('cors'),
   mongoose = require('mongoose'),
   Models = require('./models.js');
 
@@ -15,6 +16,8 @@ mongoose.connect('mongodb://localhost:27017/myFlix', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 });
+
+app.use(cors()); //Cross-Origin Resource Sharing (CORS) is an HTTP-header based mechanism that allows a server to indicate any origins (domain, scheme, or port) other than its own from which a browser should permit loading resources.
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); //bodyParser middle ware function
