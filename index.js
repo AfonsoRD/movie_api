@@ -50,16 +50,20 @@ app.get('/', (req, res) => {
 //Return JSON object when at /movies
 
 //GET all movies
-app.get('/movies', (req, res) => {
-  Movies.find()
-    .then((movies) => {
-      res.status(200).json(movies);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-});
+app.get(
+  '/movies',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    Movies.find()
+      .then((movies) => {
+        res.status(200).json(movies);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      });
+  }
+);
 
 //GET movies By Title
 app.get(
@@ -143,13 +147,9 @@ app.get(
   }
 );
 
-app.get(
-  '/documentation',
-  passport.authenticate('jwt', { session: false }),
-  (req, res) => {
-    res.sendFile('public/documentation.html', { root: __dirname });
-  }
-);
+app.get('/documentation', (req, res) => {
+  res.sendFile('public/documentation.html', { root: __dirname });
+});
 
 //CREATE
 
