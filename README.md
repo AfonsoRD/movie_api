@@ -18,17 +18,23 @@ Allow users to add a movie to their list of favorites
 Allow users to remove a movie from their list of favorites
 Allow existing users to deregister
 
-###### Technical Dependencies
+#### Technical Dependencies
 
-Node.js
-Express
-Morgan
-MongoDB
-Mongoose
-Passport
+- Node.js
+- Express
+- Morgan
+- MongoDB
+- Mongoose
+- Passport
 
-###### Testing Tools
+#### Testing Tools
 
 Postman
 
-###### [My Flix app](https://afonsord.github.io/movie_api/)
+###### [My Flix app](https://movie-api-afonsord.vercel.app/)
+
+
+
+
+
+
