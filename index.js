@@ -176,7 +176,7 @@ app.post(
       'Username contains non alphanumeric characters - not allowed'
     ).isAlphanumeric(),
     check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not apear to be valid').isEmail()
+    check('Email', 'Email does not apear to be valid').not().isEmpty().isEmail()
   ],
   (req, res) => {
     //Check the validation object for errors
@@ -200,9 +200,7 @@ app.post(
             Birthday: req.body.Birthday
           })
             .then((user) => {
-              res
-                .status(201)
-                .json({ Username: user.Username, Email: user.Email });
+              res.status(201).json(user);
             })
             .catch((error) => {
               console.error(error);
@@ -232,7 +230,23 @@ app.post(
 app.put(
   '/users/:Username',
   passport.authenticate('jwt', { session: false }),
+  [
+    check('Username', 'Username is required').isLength({ min: 5 }),
+    check(
+      'Username',
+      'Username contains non alphanumeric characters - not allowed'
+    ).isAlphanumeric(),
+    check('Password', 'Password is required').not().isEmpty(),
+    check('Email', 'Email does not apear to be valid').isEmail()
+  ],
   (req, res) => {
+    let errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array() });
+    }
+    // Hash any password entered by the user when registering before storing it in the MongoDB database
+    let hashedPassword = Users.hashPassword(req.body.Password);
     Users.findOneAndUpdate(
       { Username: req.params.Username },
       {
