@@ -283,11 +283,7 @@ app.post(
         $push: { FavoriteMovies: req.params.MovieID }
       }
     )
-      .then(() =>
-        res.send(
-          req.params.MovieID + ' was added to ' + req.params.Username + ' list.'
-        )
-      )
+      .then(() => res.json(updatedUser))
       .catch((err) => {
         console.error(err);
         res.status(500).send('Error: ' + err);
@@ -308,14 +304,7 @@ app.delete(
         $pull: { FavoriteMovies: req.params.MovieID }
       }
     )
-      .then(() =>
-        res.send(
-          req.params.MovieID +
-            ' was deleted from ' +
-            req.params.Username +
-            ' list.'
-        )
-      )
+      .then(() => res.json(updatedUser))
       .catch((err) => {
         console.error(err);
         res.status(500).send('Error: ' + err);
