@@ -232,33 +232,18 @@ app.post(
 app.put(
   '/users/:Username',
   passport.authenticate('jwt', { session: false }),
-  [
-    check('Username', 'Username is required').isLength({ min: 5 }),
-    check(
-      'Username',
-      'Username contains non alphanumeric characters - not allowed'
-    ).isAlphanumeric(),
-    check('Password', 'Password is required').not().isEmpty(),
-    check('Email', 'Email does not apear to be valid').isEmail()
-  ],
   (req, res) => {
-    //Check the validation object for errors
-    let errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-      return res.status(422).json({ errors: errors.array() });
-    }
     Users.findOneAndUpdate(
       { Username: req.params.Username },
       {
         $set: {
           Username: req.body.Username,
-          Password: hashedPassword,
+          Password: req.body.Password,
           Email: req.body.Email,
           Birthday: req.body.Birthday
         }
       },
-      { new: true }, // This line makes sure that the updated document is returned
+      { new: true },
       (err, updatedUser) => {
         if (err) {
           console.error(err);
