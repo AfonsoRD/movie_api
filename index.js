@@ -281,13 +281,17 @@ app.post(
       { Username: req.params.Username },
       {
         $push: { FavoriteMovies: req.params.MovieID }
+      },
+      { new: true }, //Makes sure updated doc is returned
+      (err, updatedUser) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send('error: ' + err);
+        } else {
+          res.json(updatedUser);
+        }
       }
-    )
-      .then(() => res.json(updatedUser))
-      .catch((err) => {
-        console.error(err);
-        res.status(500).send('Error: ' + err);
-      });
+    );
   }
 );
 
@@ -302,13 +306,17 @@ app.delete(
       { Username: req.params.Username },
       {
         $pull: { FavoriteMovies: req.params.MovieID }
+      },
+      { new: true }, //Makes sure updated doc is returned
+      (err, updatedUser) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send('error: ' + err);
+        } else {
+          res.json(updatedUser);
+        }
       }
-    )
-      .then(() => res.json(updatedUser))
-      .catch((err) => {
-        console.error(err);
-        res.status(500).send('Error: ' + err);
-      });
+    );
   }
 );
 
