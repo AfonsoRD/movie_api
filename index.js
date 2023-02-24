@@ -33,28 +33,31 @@ app.use(express.static('public'));
 
 const cors = require('cors');
 
-let allowedOrigins = [
-  'http://localhost:8080',
+const ALLOWED_ORIGINS = [
   'http://localhost:1234',
-  'http://testsite.com',
-  'https://myflix-by-afonsord.netlify.app/login'
+  'http://localhost:3000',
+  'http://localhost:5173',
+  'http://192.168.1.253:5173',
+  'https://myflix-by-afonsord.netlify.app'
 ];
 
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        // If a specific origin isn’t found on the list of allowed origins
-        let message =
-          'The CORS policy for this application doesn’t allow access from origin ' +
-          origin;
-        return callback(new Error(message), false);
+export const initCors = (app) => {
+  app.use(
+    cors({
+      credentials: true, // include Access-Control-Allow-Credentials: true. remember set xhr.withCredentials = true;
+      origin(origin, callback) {
+        // allow requests with no origin
+        // (like mobile apps or curl requests)
+        if (!origin) return callback(null, true);
+        if (ALLOWED_ORIGINS.indexOf(origin) === -1) {
+          const msg = `The CORS policy for this site does not allow access from the specified Origin: ${origin}`;
+          return callback(new Error(msg), false);
+        }
+        return callback(null, true);
       }
-      return callback(null, true);
-    }
-  })
-);
+    })
+  );
+};
 
 let auth = require('./auth')(app); // to import auth.js file... the (app) argument is to ensure Express is available in the auth.js file as well
 
