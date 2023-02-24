@@ -23,11 +23,6 @@ mongoose.connect(process.env.CONNECTION_URI, {
   useUnifiedTopology: true
 });*/
 
-const cors = require('cors');
-
-app.use(cors());
-//Cross-Origin Resource Sharing (CORS) is an HTTP-header based mechanism that allows a server to indicate any origins (domain, scheme, or port) other than its own from which a browser should permit loading resources.
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); //bodyParser middle ware function
 
@@ -35,6 +30,31 @@ app.use(bodyParser.urlencoded({ extended: true })); //bodyParser middle ware fun
 app.use(morgan('common'));
 
 app.use(express.static('public'));
+
+const cors = require('cors');
+
+let allowedOrigins = [
+  'http://localhost:8080',
+  'http://localhost:1234',
+  'http://testsite.com',
+  'https://myflix-by-afonsord.netlify.app/login'
+];
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.indexOf(origin) === -1) {
+        // If a specific origin isn’t found on the list of allowed origins
+        let message =
+          'The CORS policy for this application doesn’t allow access from origin ' +
+          origin;
+        return callback(new Error(message), false);
+      }
+      return callback(null, true);
+    }
+  })
+);
 
 let auth = require('./auth')(app); // to import auth.js file... the (app) argument is to ensure Express is available in the auth.js file as well
 
