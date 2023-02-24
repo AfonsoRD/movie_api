@@ -31,8 +31,6 @@ app.use(morgan('common'));
 
 app.use(express.static('public'));
 
-const cors = require('cors');
-
 let allowedOrigins = [
   'http://localhost:1234',
   'http://localhost:3000',
