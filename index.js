@@ -65,13 +65,20 @@ require('./passport');
 
 //READ or GET
 
+/**
+ * a Welcome page to give feedback on the correct port
+ */
+
 app.get('/', (req, res) => {
   res.send('Welcome to myFlix APP!');
 });
 
 //Return JSON object when at /movies
 
-//GET all movies
+/**
+ * returns a JSON object of ALL movies
+ */
+
 app.get(
   '/movies',
   passport.authenticate('jwt', { session: false }),
@@ -87,7 +94,10 @@ app.get(
   }
 );
 
-//GET movies By Title
+/**
+ * returns a JSON object of movies by title
+ */
+
 app.get(
   '/movies/:Title',
   passport.authenticate('jwt', { session: false }),
@@ -103,7 +113,9 @@ app.get(
   }
 );
 
-//By Genre
+/**
+ * returns a JSON object of Genre
+ */
 
 app.get(
   '/movies/genre/:Name',
@@ -120,7 +132,9 @@ app.get(
   }
 );
 
-//By Director
+/**
+ * returns a JSON object of Director
+ */
 
 app.get(
   '/movies/director/:Name',
@@ -137,7 +151,10 @@ app.get(
   }
 );
 
-// Get all users
+/**
+ * returns a JSON object of ALL users
+ */
+
 app.get(
   '/users',
   passport.authenticate('jwt', { session: false }),
@@ -153,7 +170,10 @@ app.get(
   }
 );
 
-// Get a user by username
+/**
+ * returns a JSON object a user by name
+ */
+
 app.get(
   '/users/:Username',
   passport.authenticate('jwt', { session: false }),
@@ -168,6 +188,10 @@ app.get(
       });
   }
 );
+
+/**
+ * serve a static documentation.html page
+ */
 
 app.get('/documentation', (req, res) => {
   res.sendFile('public/documentation.html', { root: __dirname });
@@ -187,10 +211,12 @@ app.get('/documentation', (req, res) => {
 
 app.post(
   '/users',
-  // Validation logic here for request
-  //you can either use a chain of methods like .not().isEmpty()
-  //wich means "opposite of isEmpty" in plain english "is not empty"
-  //minimum value of 5 characters are only allowed
+  /**
+   * Validation logic here for request
+   * you can either use a chain of methods like .not().isEmpty()
+   * wich means "opposite of isEmpty" in plain english "is not empty"
+   * minimum value of 5 characters are only allowed
+   **/
   [
     check('Username', 'Username is required').isLength({ min: 5 }),
     check(
