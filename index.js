@@ -34,21 +34,19 @@ app.use(express.static('public'));
 let allowedOrigins = [
   'http://localhost:1234',
   'http://localhost:3000',
-  'http://localhost:8080',
   'http://localhost:4200',
-  'http://localhost:4200/welcome',
   'https://myflix-by-afonsord.netlify.app',
-  ' https://afonsord.github.io/myFlix-Angular-client'
+  'https://afonsord.github.io'
 ];
-
 app.use(
   cors({
+    allowedHeaders: ['Authorization', 'Content-Type'],
     origin: (origin, callback) => {
       if (!origin) return callback(null, true);
       if (allowedOrigins.indexOf(origin) === -1) {
         // If a specific origin isn’t found on the list of allowed origins
         let message =
-          'The CORS policy for this application doesn’t allow access from origin ' +
+          'The CORS policy for this application does not allow access from origin: ' +
           origin;
         return callback(new Error(message), false);
       }
