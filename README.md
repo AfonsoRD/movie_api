@@ -6,17 +6,21 @@ This project is a REST API for a movie platform application that interacts with 
 The database can store movies and users to the users be able to sign up, login and create a list of their favorite movies.
 This API is hosted using Vercel and the database using Atlas MongoDB.
 
+# Hosting
+The API is hosted in Vercel Paas service at [https://movie-api-afonsord.vercel.app/](https://movie-api-afonsord.vercel.app/).<br>
+The DataBase is hosted in MongoDB.
+
 **Key Features**
 
-- Return a list of ALL movies to the user
-- Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user
-- Return data about a genre (description) by name/title
-- Return data about a director (bio, birth year, death year) by name
-- Allow new users to register
-- Allow users to update their user info (username, password, email, date of birth)
-- Allow users to add a movie to their list of favorites
-- Allow users to remove a movie from their list of favorites
-- Allow existing users to deregister
+Return a list of ALL movies to the user
+Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user
+Return data about a genre (description) by name/title
+Return data about a director (bio, birth year, death year) by name
+Allow new users to register
+Allow users to update their user info (username, password, email, date of birth)
+Allow users to add a movie to their list of favorites
+Allow users to remove a movie from their list of favorites
+Allow existing users to deregister
 
 #### Technical Dependencies
 
@@ -288,3 +292,9 @@ ruitest123 was deleted
 ```
 
 ###### [My Flix app](https://movie-api-afonsord.vercel.app/)
+
+
+
+
+
+
